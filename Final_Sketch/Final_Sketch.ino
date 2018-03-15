@@ -34,6 +34,9 @@ void loop() {
     int sensorValue = analogRead(A3);
     Serial.println(sensorValue);
     delay(1000);
+
+//comment to test
+    
     // Close connection and free resources.
     client.stop();
   }
