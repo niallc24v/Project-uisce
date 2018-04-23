@@ -83,11 +83,11 @@ void loop() {
       digitalWrite(3, LOW);
     }
 
-  
+  double volPercent = (sensorvalue/1024)*100;
 
   // Make a HTTP request:  
   String APIRequest;
-  APIRequest = String(serverName) + "/pushingbox?devid=" + String(devid)+ "&IDtag=100&TimeStamp=50&TempC="+sensorValue;
+  APIRequest = String(serverName) + "/pushingbox?devid=" + String(devid)+ "&IDtag=100&TimeStamp=50&VolumePercent="+volPercent;
   client.get (APIRequest);
   
   // if there are incoming bytes available
@@ -98,9 +98,9 @@ void loop() {
   }
   Serial.flush();
   String UploadMessage;
-  Serial.print("\n Uploaded temp value: ");
-  Serial.print(sensorValue);
-  delay(5000);
+  Serial.print("\n Uploaded volume percent: ");
+  Serial.print(volPercent);
+  delay(5000);//for demo, short delay. Real world would have 20min delay (20min*60*1000 = 180000ms delay)
 }
 
 
