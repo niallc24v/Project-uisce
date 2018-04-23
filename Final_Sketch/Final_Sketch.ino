@@ -6,10 +6,17 @@
 // Listen to the default port 5555, the Yún webserver
 // will forward there all the HTTP requests you send
 BridgeServer server;
+const int analogueInPin = A2;
+const int analogOutPin = 8;
+
+int sensorValue = 0;
+int outputValue = 0;
 
 void setup() {
   // Bridge startup
   pinMode(13, OUTPUT);
+  pinMode(8, OUTPUT);
+  pinMode(4, OUTPUT);
   digitalWrite(13, LOW);
   Bridge.begin();
   digitalWrite(13, HIGH);
@@ -31,9 +38,27 @@ void loop() {
     process(client);
 
     //our added code from here
-    int sensorValue = analogRead(A3);
-    Serial.println(sensorValue);
+    const int analogueInPin = A2;
+    
+    sensorValue = analogRead(A2);
+    outputValue = map(sensorValue, 0, 1023, 0, 255);
+    analogWrite(analogOutPin, outputValue);
+    Serial.print("sensor = ");
+    Serial.print(sensorValue);
     delay(1000);
+
+    //sensorValue=800;
+    
+    if(sensorValue>0 && sensorValue<500)
+    {
+      digitalWrite(8, HIGH);
+      digitalWrite(4, LOW);
+    }
+    else
+    {
+      digitalWrite(8, LOW);
+      digitalWrite(4, HIGH);
+    }
 
 //comment to test
     
@@ -97,7 +122,7 @@ void analogCommand(BridgeClient client) {
   // Read pin number
   pin = client.parseInt();
 
-  // If the next character is a '/' it means we have an URL
+  // If the next character is a '/' it means we have a URL
   // with a value like: "/analog/5/120"
   if (client.read() == '/') {
     // Read value and execute command
