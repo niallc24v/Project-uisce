@@ -17,17 +17,13 @@ void setup() {
 void loop() {
       //our added code from here
     const int analogueInPin = A2;
-    
-    int sensorValue = analogRead(A2);
-    //int outputValue;
+    int sensorValue = analogRead(A2);    
     int outputValue = map(sensorValue, 0, 1023, 0, 255);
-    //analogWrite(analogOutPin, outputValue);
     Serial.print("sensor = ");
     Serial.print(sensorValue);
     delay(1000);
 
-    //sensorValue=800;
-    
+        
     if(sensorValue>0 && sensorValue<500)
     {
       digitalWrite(2, LOW);

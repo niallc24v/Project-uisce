@@ -83,7 +83,7 @@ void loop() {
       digitalWrite(3, LOW);
     }
 
-  double volPercent = (sensorvalue/1024)*100;
+  double volPercent = (sensorValue/1024)*100;
 
   // Make a HTTP request:  
   String APIRequest;
