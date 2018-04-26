@@ -31,7 +31,8 @@ boolean DEBUG = true;
 
 void setup() {
 
-  const int analogueInPin = A2;
+  const int analogueInPin = A0;
+  Bridge.begin();
   pinMode(2, OUTPUT);
   pinMode(4, OUTPUT);
   pinMode(3, OUTPUT);
@@ -40,13 +41,13 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-    const int analogueInPin = A2;
+    const int analogueInPin = A0;
     
-    int sensorValue = analogRead(A2);
+    int sensorValue = analogRead(A0);
     int outputValue = map(sensorValue, 0, 1023, 0, 255);
     
-    Serial.print("sensor = ");
-    Serial.print(sensorValue);
+    //Serial.print("sensor = ");
+    //Serial.print(sensorValue);
     
 
     //sensorValue=800;
@@ -76,7 +77,7 @@ void loop() {
   //Setup sensorValue to read a value from Analog Port A0
   
   
-  //Testing value - when sensor is not connected - comment out when sketch is shown to be working - and take value from A2 instead
+  //Testing value - when sensor is not connected - comment out when sketch is shown to be working - and take value from A0 instead
   //sensorValue=1500;
 
   // Make an HTTP request:  
@@ -86,7 +87,8 @@ void loop() {
   
   // if there are incoming bytes available
   // from the server, read them and print them:
-  while (client.available()) {
+  
+  if (client.available()) {
     char c = client.read();
 
   }
