@@ -15,8 +15,9 @@ int outputValue = 0;
 void setup() {
   // Bridge startup
   pinMode(13, OUTPUT);
-  pinMode(8, OUTPUT);
+  pinMode(2, OUTPUT);
   pinMode(4, OUTPUT);
+  pinMode(3, OUTPUT);
   digitalWrite(13, LOW);
   Bridge.begin();
   digitalWrite(13, HIGH);
@@ -49,15 +50,23 @@ void loop() {
 
     //sensorValue=800;
     
-    if(sensorValue>0 && sensorValue<500)
+        if(sensorValue>0 && sensorValue<500)
     {
-      digitalWrite(8, HIGH);
-      digitalWrite(4, LOW);
-    }
-    else
-    {
-      digitalWrite(8, LOW);
+      digitalWrite(2, LOW);
       digitalWrite(4, HIGH);
+      digitalWrite(3, LOW);
+    }
+    else if(sensorValue>=500&& sensorValue<750)
+    {
+      digitalWrite(2, LOW);
+      digitalWrite(4, LOW);
+      digitalWrite(3, HIGH);
+    }
+    else if(sensorValue > 750)
+    {
+      digitalWrite(2, HIGH);
+      digitalWrite(4, LOW);
+      digitalWrite(3, LOW);
     }
 
 //comment to test
