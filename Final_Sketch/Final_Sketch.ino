@@ -7,10 +7,10 @@
 // will forward there all the HTTP requests you send
 BridgeServer server;
 const int analogueInPin = A2;
-const int analogOutPin = 8;
+//const int analogOutPin = 8;
 
-int sensorValue = 0;
-int outputValue = 0;
+//int sensorValue = 0;
+//int outputValue = 0;
 
 void setup() {
   // Bridge startup
@@ -18,9 +18,9 @@ void setup() {
   pinMode(2, OUTPUT);
   pinMode(4, OUTPUT);
   pinMode(3, OUTPUT);
-  digitalWrite(13, LOW);
-  Bridge.begin();
-  digitalWrite(13, HIGH);
+  //digitalWrite(13, LOW);
+  //Bridge.begin();
+  //digitalWrite(13, HIGH);
 
   // Listen for incoming connection only from localhost
   // (no one from the external network could connect)
@@ -41,16 +41,16 @@ void loop() {
     //our added code from here
     const int analogueInPin = A2;
     
-    sensorValue = analogRead(A2);
-    outputValue = map(sensorValue, 0, 1023, 0, 255);
-    analogWrite(analogOutPin, outputValue);
-    Serial.print("sensor = ");
-    Serial.print(sensorValue);
+    int sensorValue = analogRead(A2);
+    int outputValue = map(sensorValue, 0, 1023, 0, 255);
+    //analogWrite(analogOutPin, outputValue);
+    //Serial.print("sensor = ");
+    //Serial.print(sensorValue);
     delay(1000);
 
     //sensorValue=800;
     
-        if(sensorValue>0 && sensorValue<500)
+    if(sensorValue>0 && sensorValue<500)
     {
       digitalWrite(2, LOW);
       digitalWrite(4, HIGH);
