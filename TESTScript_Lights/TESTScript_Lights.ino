@@ -82,7 +82,7 @@ void loop() {
 
   // Make an HTTP request:  
   String APIRequest;
-  APIRequest = String(serverName) + "/pushingbox?devid=" + String(devid) + "&IDtag=100&TimeStamp=50&TempC="+sensorValue;
+  APIRequest = String(serverName) + "/pushingbox?devid=" + String(devid) + "&Volume="+sensorValue;
   client.get (APIRequest);
   
   // if there are incoming bytes available
